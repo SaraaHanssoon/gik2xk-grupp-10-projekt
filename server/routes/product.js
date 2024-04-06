@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Product } = require('../models');
+const { Product } = require('../models/models/product');
 
-// Hämta alla produkter
+// Fetch all products
 router.get('/', async (req, res) => {
   try {
     const products = await Product.findAll();
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Skapa en ny produkt
+// Create a new product
 router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Uppdatera en produkt
+// Update a product
 router.put('/:product_id', async (req, res) => {
   try {
     const [updated] = await Product.update(req.body, {
@@ -32,23 +32,23 @@ router.put('/:product_id', async (req, res) => {
       const updatedProduct = await Product.findOne({ where: { product_id: req.params.product_id } });
       res.json(updatedProduct);
     } else {
-      throw new Error('Produkt inte hittad');
+      throw new Error('Product not found');
     }
   } catch (error) {
     res.status(500).send(error.message);
   }
 });
 
-// Radera en produkt
+// Delete a product
 router.delete('/:product_id', async (req, res) => {
   try {
     const deleted = await Product.destroy({
       where: { product_id: req.params.product_id }
     });
     if (deleted) {
-      res.status(204).send("Produkt raderad");
+      res.status(204).send("Product deleted");
     } else {
-      throw new Error('Produkt inte hittad');
+      throw new Error('Product not found');
     }
   } catch (error) {
     res.status(500).send(error.message);

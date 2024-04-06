@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { CartProduct } = require('../models');
+const { CartProduct } = require('../models/models/cartProduct');
 
 // Lägg till en produkt i en varukorg
 router.post('/', async (req, res) => {

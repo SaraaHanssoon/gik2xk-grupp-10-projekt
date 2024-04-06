@@ -1,8 +1,9 @@
 const { Sequelize } = require('sequelize');
+const path = require('path');
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: 'C:\\Users\\Admin\\tshirtshop\\server\\tshirtDataBase.db' // Notera korrigeringen för Windows-sökvägar
+  storage: path.join(__dirname, '..', 'kaffeDatabas.db') // Makes path OS-independent
 });
 
 module.exports = sequelize;

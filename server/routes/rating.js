@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Rating } = require('../models');
+const { Rating } = require('../models/models/rating');
 
 // Skapa en ny rating för en produkt
 router.post('/', async (req, res) => {

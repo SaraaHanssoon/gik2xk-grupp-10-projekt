@@ -1,10 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('C:\Users\Admin\tshirtshop\server\database.js'); 
+const sequelize = require('../../databas/database');
 
 class CartProduct extends Model {}
 
 CartProduct.init({
-
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -14,27 +13,27 @@ CartProduct.init({
   cartId: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'cart', // 'cart' bör vara namnet på din Cart-modell/tabell
+      model: 'cart',
       key: 'id',
     }
   },
   productId: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'product', // 'product' bör vara namnet på din Product-modell/tabell
-      key: 'product_id', // 'product_id' bör vara nyckeln i din Product-modell
+      model: 'product',
+      key: 'product_id',
     }
   },
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    defaultValue: 1, // Standardvärdet om inget annat anges
+    defaultValue: 1,
   },
 }, {
-  sequelize, // Din Sequelize-instans
+  sequelize,
   modelName: 'CartProduct',
-  tableName: 'cart_products', // Namnet på tabellen i databasen
-  timestamps: false, // Sätt till true om du har createdAt och updatedAt kolumner
+  tableName: 'cart_products',
+  timestamps: false,
 });
 
 module.exports = CartProduct;

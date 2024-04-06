@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../databas/database');
+const sequelize = require('../../databas/database');
 
 class Cart extends Model {}
 

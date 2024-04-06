@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../models'); // Antag att alla dina modeller exporteras från en central fil
+// Update the import path to reflect the correct location of your User model
+const { User } = require('../models/models/user');
 
 // Hämta alla användare
 router.get('/', async (req, res) => {
